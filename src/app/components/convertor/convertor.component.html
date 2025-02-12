@@ -1,0 +1,20 @@
+<div>
+    <label>
+        <input type="number" [formControl]="amount" (input)="convert()">
+        {{ currencyFrom }}
+    </label>
+    <button (click)="switch()">Switch</button>
+    <label>
+        <input type="number" [formControl]="converted">
+        {{ curencyTo }}
+    </label>
+    <p>Taux de change actuel: {{ rate$ | async | number:'1.4-4' }}</p>
+    <button (click)="setFixedRate()">Fixed rate</button>
+    <button *ngIf="fixedRate$ | async" (click)="resetFixedRate()">Reset taux</button>
+
+    <ul>
+        <li *ngFor="let entry of history$ | async">
+          {{ entry.amount | number:'1.4-4' }} {{ entry.from }} → {{ entry.converted | number:'1.4-4' }} {{ entry.to }} (Taux : {{ entry.rate | number:'1.4-4' }})
+        </li>
+    </ul>
+</div>
