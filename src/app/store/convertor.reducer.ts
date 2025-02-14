@@ -6,7 +6,7 @@ export const convertorReducer = createReducer(
     initialConvertorState,
     on(updateRate, (state: ConvertorState, props: { change: number }) => ({
         ...state,
-        rate: state.fixedRate ? state.fixedRate : Math.max(0, state.rate + props.change),
+        rate: state.fixedRate ? state.fixedRate : Math.max(0, 1.1 + props.change),
         fixedRate: state.rate > 2 ? null : state.fixedRate
     })),
     on(setFixedRate, (state: ConvertorState, props: { rate: number }) => ({ ...state, fixedRate: props.rate })),
